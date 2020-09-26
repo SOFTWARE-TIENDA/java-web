@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.TiendaWeb.DatabaseConfig;
+package tienda.controller;
 
 /**
  *
  * @author josel
  */
-public class Conexion {
+public class ControllerProductos {
     
 }
