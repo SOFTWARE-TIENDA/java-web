@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tienda.controller;
+package IDAO;
+
+import model.Usuario;
 
 /**
  *
  * @author josel
  */
-public class ControllerProductos {
-    
+public interface IUserDao {
+    public Usuario authenticated(String email,String password);
 }

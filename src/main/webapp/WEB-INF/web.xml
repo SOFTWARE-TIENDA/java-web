@@ -7,6 +7,40 @@
        <welcome-file-list>
      <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
+   <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error-404.html</location>
+    </error-page>
+    <servlet>
+        <servlet-name>UserController</servlet-name>
+        <servlet-class>Controller.UserController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UserController</servlet-name>
+        <url-pattern>/UserController</url-pattern>
+    </servlet-mapping>
+    
+      <servlet>
+        <servlet-name>ProductoController</servlet-name>
+        <servlet-class>Controller.ProductoController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProductoController</servlet-name>
+        <url-pattern>/ProductoController</url-pattern>
+    </servlet-mapping>
+    
+<!--    
+    <servlet>  
+     <servlet-name>ProductoController</servlet-name>  
+     <jsp-file>dashboardjsp</jsp-file>  
+</servlet>  
+<servlet-mapping>  
+     <servlet-name>ProductoController</servlet-name>  
+     <url-pattern>/ProductoController</url-pattern>  
+</servlet-mapping> -->
+    
+    
+    
     <session-config>
         <session-timeout>
             30

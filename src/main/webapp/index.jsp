@@ -13,7 +13,9 @@
     </head>
     <body>
         <jsp:include page="Menu/navbar.jsp"></jsp:include>
-        <h1>Home here ...!</h1>
+          <div class="page-index">
+                   <h1>index here ..!</h1>
+            </div>
           <jsp:include page="Menu/footer.jsp"></jsp:include>
     </body>
 </html>

@@ -1,0 +1,63 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03/10/2020, 04:18:48 PM
+    Author     : josel
+*/
+
+/* css de pagina dashboard */
+.container-query{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap; 
+}
+#icon_list{
+  font-size:50px;
+  text-align:center;
+  line-height:90px;
+  width:100px;
+  height:100px;
+  background:#C11F6D;
+}
+.card-query{
+  margin:10px;
+  color:white;
+  display:flex;
+  background:rgba(202, 49, 104, 0.8);
+  width:270px;
+  height:100px;
+}
+.text-card{
+  margin-left:10px;
+  padding:10px 5px;
+  align-self:center;
+}
+.text-card-dashboard-tittle{
+  font-size:20px;
+}
+.text-quer-dashboard{
+  font-size:30px;
+}
+/*design buttos data tables */
+.btn_promocion{
+     outline:none;
+  background:#B294F1;
+  width:130px;
+  height:40px;
+  border:none;
+  color:#04139A;
+  font-size:16px;
+  border-radius:10px;
+}
+.fa-tag{
+  color:#AF23F1;
+  margin-right:10px;
+  font-size:15px;
+}
+.btn_promocion:hover{
+  background:#7247CE;
+  color:white;
+}

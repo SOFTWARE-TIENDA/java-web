@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03/10/2020, 04:19:03 PM
+    Author     : josel
+*/
+
+/* aca con lleva  lo que se repite los componentes */
+*{
+  margin:0;
+}
+.dataTables_wrapper{
+    width:800px;
+    margin:0 auto;
+}
+/* design initialize form*/
+#modal,#modal_promotions{
+  /*display:none;*/
+  display:none;
+  width:100%;
+  position:absolute;
+  top:0%;
+  background:rgba(0,0,0,0.25);
+  height:100vh;
+}
+.body-modal-login,.body-modal-promotions{
+  padding:10px 10px;
+  width:500px;
+  height:400px;
+  background:white;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius:30px;
+  text-align:center;
+}
+/* design header */
+.body-modal-header-login h3{
+  color:#09732D;
+  margin-top:20px;
+  font-family:'Roboto Mono';
+}
+#icon{
+  font-size:50px;
+  color:green;
+}
+/* design forms*/
+.form-group{
+  margin-top:30px;
+}
+.form-control{
+  font-family: "Roboto Mono";
+  border:1px solid #33AE1F;
+  width:50%;
+  padding:15px;
+  border-radius:20px;
+  outline:none;
+  font-size:16px;
+}
+.btn-login{
+  margin-top:30px;
+  width:170px;
+  height:50px;
+  padding:5px;
+  color:white;
+  border-radius:30px;
+  border:none;
+  background:#30D887;
+  outline:none;
+  cursor:pointer;
+}
+.btn-login:hover{
+  background:#139E5C;
+}
+::placeholder { 
+  color: #58D23A;
+}
+/*end design forms*/
+/* icon close*/
+#icon_close{
+  cursor:pointer;
+  position:relative;
+  left:330px;
+  top:-65px;
+  font-size:35px;
+  color:white;
+  width:50px;
+  height:40px;
+  line-height:40px;
+  background:#30D8B9;
+  border-radius:15px;
+}
+#icon_close:hover{
+  background:#30AFD8;
+}
