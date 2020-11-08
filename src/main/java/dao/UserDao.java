@@ -7,6 +7,7 @@ package dao;
 
 import IDAO.IUserDao;
 import app.DatabaseConfig.Conexion;
+import app.DatabaseConfig.GestorJDBC;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,29 +17,24 @@ import model.Usuario;
  *
  * @author josel
  */
-public class UserDao extends Conexion implements IUserDao{
-    private final String AUTHENTICATED="SELECT * FROM usuario where email=? and contraseña=?";
-    PreparedStatement pre; 
-    ResultSet re;
+public class UserDao implements IUserDao{
+     GestorJDBC gestor;
+     public UserDao(GestorJDBC gestor){
+         this.gestor=gestor;
+     }
     @Override
-    public Usuario authenticated(String email,String password) {
-        Usuario user;
-        try{
-            pre = this.getConexion().prepareStatement(AUTHENTICATED);
+    public Usuario authenticated(String email) throws SQLException {
+                Usuario user=null;
+           PreparedStatement pre = gestor.prepararSentencia(AUTHENTICATED);
             pre.setString(1,email);
-            pre.setString(2,password);
-            re  = pre.executeQuery();
+           ResultSet re  = pre.executeQuery();
             if(re.next()){
                 user = new Usuario(
                         re.getString("nombre"),
-                        re.getString("apellido"));
-                 return user;
-            }else{
-                return null;
+                        re.getString("apellido"),
+                        re.getString("password")
+                );
             }
-        }catch(SQLException e){
-            System.out.println("error " + e);
-        }
-        return null;
-    }
+            return user;
+       }
 }

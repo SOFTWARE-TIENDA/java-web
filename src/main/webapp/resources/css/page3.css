@@ -14,6 +14,10 @@ and open the template in the editor.
   justify-content:center;
   flex-wrap:wrap; 
 }
+.title-user{
+    text-align:center;
+     font-family: "Montserat-light";
+}
 #icon_list{
   font-size:50px;
   text-align:center;
@@ -37,10 +41,47 @@ and open the template in the editor.
 }
 .text-card-dashboard-tittle{
   font-size:20px;
+  font-family:'Lato-LightItalic';
 }
 .text-quer-dashboard{
   font-size:30px;
 }
+/* modal para dashboard promotion */
+#modal_promotions{
+  display:none;
+  width:100%;
+  position:fixed;
+  top:0%;
+  background:rgba(0,0,0,0.25);
+  height:100%;
+  overflow-y:auto;
+}
+.head_promotions{
+    margin-top:10px;
+}
+.body-modal-promotions{
+  padding:10px 10px;
+  width:600px; 
+  height:550px;
+  position:absolute;
+  background:white;
+  top:48%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius:30px;
+  text-align:center;
+  overflow-y: auto;
+}
+
+/* */
+
+
+.container_promotion_dashboard{
+  justify-content:center;
+  display:flex;
+  flex-wrap:wrap;
+}
+
 /*design buttos data tables */
 .btn_promocion{
      outline:none;
@@ -51,6 +92,7 @@ and open the template in the editor.
   color:#04139A;
   font-size:16px;
   border-radius:10px;
+  font-family:'OpenSans-Light';
 }
 .fa-tag{
   color:#AF23F1;
@@ -60,4 +102,131 @@ and open the template in the editor.
 .btn_promocion:hover{
   background:#7247CE;
   color:white;
+}
+
+/* promotions */
+.container_promotion_dashboard{
+  display:flex;
+    flex-wrap:wrap;
+  width:100%;
+    justify-content:center;
+}
+/* #A65FED  */
+.card-dashboard-promotion{
+  margin-right:10px;
+  margin-top:30px;
+  margin-left: 10px;
+  background:#A65FED;
+  width:270px;
+  height:370px;
+  border-radius:20px;
+  flex-direction:column;
+  text-align:center;
+}
+.card-dashboard-promotion img{
+  margin-top:15px;
+}
+.card-dashboard-promotion p{
+  margin-top:7px;
+  color:white;
+  font-family:monospace;
+}
+.card-dashboard-promotion span{
+  font-weight:bold;
+   font-family:monospace;
+}
+.number_text{
+    font-size:25px;
+    right:120px;
+    background:purple;
+    width:50px;
+    border-radius:10px;
+}
+/* BTN CHANGE */ 
+.btn-change{
+  margin-top:10px;
+  border:none;
+  background:#572DAF;
+  padding:10px;
+  color:white;
+  border-radius:10px;
+  outline:none;
+  cursor: pointer;
+  font-family:'OpenSans-Light';
+}
+.btn-change:hover{
+  background:#642FFB;
+}
+.fecha_promotion{
+  margin-top:10px;
+  color:#120E3F;
+  font-size:17px;
+}
+
+/*buttons dashboard offert */
+#close_modal{
+    position:relative;
+    border:none;
+    background:#A65FED;
+    color:white;
+    padding:10px;
+    width:100px;
+    left:240px;
+}
+
+
+/* design change*/
+.buttom_oferta{
+   background:#D83BAC;
+  border:none;
+  color:white;
+  padding:10px;
+  width:180px;
+  border-radius:5px;
+  cursor:pointer;
+  font-size:16px; 
+   font-family:'OpenSans-Light';
+}
+.buttom_oferta:hover{
+  background:#B13990;
+}
+.offert_button{
+    text-align:center;
+    margin-top:5px;
+    margin-bottom: 5px;
+    font-family:'OpenSans-Light';
+}
+.offert_button h3{
+    font-size:25px;
+    font-family:monospace;
+}
+.catalogo_promotion{
+    font-family:'Lato-Regular';
+    font-size:25px;
+}
+@font-face{
+    font-family: 'Lato-Regular';
+    src: url("../fonts/Lato-Regular.ttf");
+    font-style: normal;
+}
+@font-face{
+    font-family: 'Lato-LightItalic';
+    src: url("../fonts/Lato-LightItalic.ttf");
+    font-style: normal;
+}
+@font-face{
+    font-family: 'OpenSans-Light';
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-style: normal;
+}
+@media(max-width:750px){
+  .body-modal-promotions{
+      width:300px;
+      height:800px;
+      left:50%;
+      top:80%
+  }
+  #close_modal{
+      left:90px;
+  }
 }

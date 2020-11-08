@@ -18,7 +18,7 @@
                 }
             %>
           <jsp:include page="Menu/navbar.jsp"></jsp:include>
-          <h1 style="text-align: center;">Bievenido <% out.println(session.getAttribute("usuario")); %> </h1>
+          <h1 class="title-user">Bievenido <% out.println(session.getAttribute("usuario")); %> </h1>
           <!--tarea de cards ... -->
                 <div class="container-query">
                   <div class="card-query">
@@ -47,29 +47,34 @@
                 </div>
                 <!-- -->
                 </div>
-           <table id="datatable" class="display nowrap cell-border" cellspacing="0">
+          <div class="offert_button">
+              <h3>Cambiar Ofertas</h3>
+              <button id="changeOferta" class="buttom_oferta">Cambiar Ofertas</button>
+          </div>
+          <div style="overflow-x:auto;">
+           <table id="datatable" class="display responsive nowrap" cellspacing="0">
                 <thead>
                     <tr>
                        <th style="width:10px;">N</th>
                        <th>Nombre</th>
                        <th style="width:10px;">Precio Venta</th>
                        <th style="width:10px;">Cantidad</th>
-                       <th>Image</th>
+                       <th>Imagen</th>
                        <th></th>
                    </tr>
                </thead>
-               <tbody id="data_table" style="text-align:center;"></tbody>
+           <tbody id="data_table" style="text-align:center;"></tbody> 
            </table>
-          
-          
+          </div>
       <div id="modal_promotions">
-      <!-- -->
+         
+          <!-- -->
        <div class="body-modal-promotions">
-            <div class="container_promotion">
-                <i class="fas fa-times" id="icon_close"></i>
-                    <div id="promotions">
-                    </div>
-                </div>
+            <div class="head_promotions">
+                <button id="close_modal">Cerrar   <i class="fas fa-times"></i> </button>
+               <p class="catalogo_promotion">Catalogo de Promociones</p>
+          </div>
+               <div class="container_promotion_dashboard"></div> 
          <!-- -->
       </div>
       <!-- -->

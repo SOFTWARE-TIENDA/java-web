@@ -5,6 +5,7 @@
  */
 package IDAO;
 
+import java.sql.SQLException;
 import model.Usuario;
 
 /**
@@ -12,5 +13,7 @@ import model.Usuario;
  * @author josel
  */
 public interface IUserDao {
-    public Usuario authenticated(String email,String password);
+    public Usuario authenticated(String email) throws SQLException;
+    public final String AUTHENTICATED="SELECT * FROM usuario where email=?";
+    
 }

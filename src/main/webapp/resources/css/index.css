@@ -16,33 +16,66 @@ and open the template in the editor.
     width:800px;
     margin:0 auto;
 }
+.container{
+    width:90%;
+    margin:auto;
+}
+/* diseño de titulos */
+
+
+.text-title{
+  width:200px;
+  margin:auto;
+  text-align:center;
+  font-weight:700;
+  color:#A02121;
+  font-size:25px;
+   font-family: "OpenSans-Light";
+}
+.chip-line{
+  margin-top:18px;
+  margin-bottom:30px;
+}
+.line{
+  color:red;
+  height:3px;
+  background:#A02121;
+}
+#circle-chip{
+  position:relative;
+  top:-18px;
+  font-size:22px;
+  color:#A02121;
+}
 /* design initialize form*/
-#modal,#modal_promotions{
-  /*display:none;*/
+#modal{
+    z-index:9999;
   display:none;
   width:100%;
-  position:absolute;
+  position:fixed;
   top:0%;
   background:rgba(0,0,0,0.25);
-  height:100vh;
+  height:100%;
 }
-.body-modal-login,.body-modal-promotions{
+
+.body-modal-login{
   padding:10px 10px;
-  width:500px;
-  height:400px;
+  width:500px; 
+  height:430px;
   background:white;
   position:absolute;
   top:50%;
   left:50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%); 
   border-radius:30px;
   text-align:center;
 }
 /* design header */
 .body-modal-header-login h3{
   color:#09732D;
-  margin-top:20px;
-  font-family:'Roboto Mono';
+  margin-top:15px;
+  font-size:25px;
+   font-family: "Montserat-light";
 }
 #icon{
   font-size:50px;
@@ -53,28 +86,37 @@ and open the template in the editor.
   margin-top:30px;
 }
 .form-control{
-  font-family: "Roboto Mono";
   border:1px solid #33AE1F;
-  width:50%;
+  width:80%;
   padding:15px;
   border-radius:20px;
   outline:none;
   font-size:16px;
+  font-family: "OpenSans-Light";
 }
 .btn-login{
-  margin-top:30px;
-  width:170px;
-  height:50px;
-  padding:5px;
+  margin-top:20px;
+  width:200px;
+  padding:20px;
   color:white;
   border-radius:30px;
   border:none;
   background:#30D887;
   outline:none;
   cursor:pointer;
+  font-size:20px;
+  font-family: 'monospace';
 }
 .btn-login:hover{
   background:#139E5C;
+}
+#text_error{
+    font-family: "OpenSans-Light";
+        color:red;
+    position:relative;
+    left:-100px;
+    margin-top:10px;
+    font-weight:bold;
 }
 ::placeholder { 
   color: #58D23A;
@@ -84,7 +126,7 @@ and open the template in the editor.
 #icon_close{
   cursor:pointer;
   position:relative;
-  left:330px;
+  left:320px;
   top:-65px;
   font-size:35px;
   color:white;
@@ -97,3 +139,202 @@ and open the template in the editor.
 #icon_close:hover{
   background:#30AFD8;
 }
+@font-face{
+    font-family: 'Montserat-light';
+    src: url("../fonts/Montserrat-Light.ttf");
+    font-style: normal;
+}
+@font-face{
+    font-family: 'OpenSans-Light';
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-style: normal;
+}
+
+/*NAVBAR DESIGN */
+/*implement nav*/
+
+
+/*implemente el color*/
+
+/*quitar background */
+/* COMENZAR NAVBAR */
+.nav{
+  height:80px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.10);
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+}
+.logo{
+  line-height:130px;
+  margin-left:2rem;
+}
+.menu{
+  display:flex;
+}
+.menu .menu_link{
+  padding:5px;
+  margin-right:30px;
+  list-style:none;
+}
+.nav-item{
+      font-family:'OpenSans-Light'
+}
+.nav-item{
+  text-decoration:none;
+  line-height:80px;
+  color:black;
+}
+#log_in{
+  background:green;
+  padding:10px;
+  border-radius:10px;
+  color:white;
+}
+#item-menu{
+  display:none;
+}
+
+@media(max-width:800px){
+    #circle-chip{
+      z-index:-999;
+  }
+  .nav-item{
+      color:white;
+  }
+  #item-menu{
+    display:block;
+    font-size:30px;
+    line-height:80px;
+    margin-right:2rem;
+  }
+  #item-menu:hover{
+    color:dodgerblue;
+  }
+  .menu{
+    overflow:hidden;
+    flex-direction:column;
+    position:absolute;
+    top:80px;
+    left:-5%;
+  } 
+  nav ul li{
+    width:100%;
+  }
+  nav ul{
+    text-align:center;
+    width:100%;
+  }
+  nav ul li:hover{
+    cursor:pointer;
+    background:#2DE004;
+  }
+  #log_in{
+    background:none;
+  }
+  .menu_link{
+    background:#7FED97;
+  }
+ 
+}
+/* cierre navbar*/
+/* FOOTER */
+ .text-footer-tittle{
+     padding:10px;
+  text-align:center;
+  color:white;
+  margin-top:15px;
+  font-size:30px;
+}
+footer{
+    margin-top:30px;
+  background: rgba(30, 226, 62, 0.72);
+  width: 100%;
+  overflow:hidden;
+}
+.main-content{
+  display: flex;
+  width:70%;
+  margin:auto;
+}
+.main-content .box{
+  flex-basis: 50%;
+  padding: 10px 20px;
+}
+.box .content{
+  margin: 20px 0 0 0;
+}
+ .left .content .fas{
+   background: rgba(30, 226, 62, 0.72);
+   color: white;
+   font-size: 1.4375rem;
+   height: 45px;
+   width: 45px;
+   line-height: 45px;
+   text-align: center;
+   border-radius: 50%;
+  
+}
+icon{
+  padding-left: 100px;
+}
+icon1{
+  line-height: 50px;
+  padding-left: 100px;
+}
+
+ .text{
+   font-size: 16px;
+   font-weight: 500;
+   padding-left: 10px;
+   color: black;
+   position: absolute;
+   line-height:40px;
+   font-family: monospace;
+   font-family:'OpenSans-Light'
+}
+.right .content .fas{
+   background: rgba(30, 226, 62, 0.72);
+   color: white;
+   font-size: 1.4375rem;
+   height: 45px;
+   width: 45px;
+   line-height: 45px;
+   text-align: center;
+   border-radius: 50%;
+}
+.email,.phone{
+    margin-top:10px;
+}
+icon2{
+  line-height:50px;
+  padding-left:100px
+}
+icon3{
+  line-height:50px;
+  padding-left:100px;
+}
+@media screen and (max-width: 900px){
+  .main-content{
+    flex-direction: row;
+    display:flex;
+    justify-content: space-between;
+  }
+  .main-content .box{
+    margin: 5px;
+  }
+}
+/* CLOSE FOOTER */
+@media(max-width:550px){
+    .body-modal-login{
+        width:300px;
+    }
+    #icon_close{
+        left:300px;
+    }
+    .main-content{
+    flex-direction: column;
+    width:60%;
+  }
+}
+

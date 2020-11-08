@@ -5,59 +5,72 @@
  */
 package service;
 
+import app.DatabaseConfig.Conexion;
+import app.DatabaseConfig.GestorJDBC;
+import app.DatabaseConfig.GestorJDBCMysql;
+import app.DatabaseConfig.GestorJDBCPostgre;
 import dao.ProductoDao;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import model.Producto;
 
 /**
  *
  * @author josel
  */
 public class ProductoService {
-    ProductoDao productodao = new ProductoDao();
-    public Map getData(){
-        Map total = new HashMap();
-        try{
-            total = productodao.getTotalProducto();
-            if(total != null){
-                return total;
-            }else{
-               return null; 
-            }
-        }catch(Exception ex){
-            System.out.println(ex);
-        }
-        return null;
+    ProductoDao productodao;
+    GestorJDBC gestor;
+    public ProductoService(){
+        gestor = new GestorJDBCPostgre();
+        productodao = new ProductoDao(gestor);
     }
-    public List getProductos(){
-        List lista;
-        try{
-           lista = productodao.getListProducto();
-           if(lista != null){
-               return lista;
-           }else{
-               return null;
-           }
-        }catch(Exception ex){
-             System.out.println(ex);
-        }
-        return null;
+    public Map getData() throws Exception{
+      
+        gestor.abrirConexion();
+          Map total = new HashMap();
+         total = productodao.getTotalProducto();
+         gestor.cerrarConexion();
+         return total;
     }
-    public List getPromociones(){
-        List lista;
+    public List getProductos() throws Exception{
+        gestor.abrirConexion();
+         List lista;
+         lista = productodao.getListProducto();
+         gestor.cerrarConexion();
+         return lista;
+    }
+    public List getPromociones() throws Exception{
+          gestor.abrirConexion();
+         List lista;
+         lista = productodao.getListPromociones();
+         gestor.cerrarConexion();
+         return lista;
+
+    }
+    public int updateProduct(String id,String fecha,Double descuento,String codigo)throws Exception {
+        gestor.abrirConexion();
+       
         try{
-            lista = productodao.getListPromociones();
-             if(lista != null){
-               return lista;
-           }else{
-               return null;
-           }
-        }catch(Exception ex){
-              System.out.println(ex);
+             gestor.iniciarTransaccion();
+             int updateProduct = productodao.updatePromocion(id,fecha,descuento,codigo);
+            gestor.terminarTransaccion();
+            return updateProduct;
+        }catch(Exception e){
+        gestor.cancelarTransaccion();
+            throw e;
         }
-         return null;
+    }
+    public int updateDescuento(String id,double descuento) throws Exception{
+         gestor.abrirConexion();
+        try{
+             gestor.iniciarTransaccion();
+        int updateProduct = productodao.updateDescuento(id,descuento);
+        gestor.terminarTransaccion();
+        return updateProduct;
+        }catch(Exception e){
+            gestor.cancelarTransaccion();
+            throw e;
+        }
     }
 }

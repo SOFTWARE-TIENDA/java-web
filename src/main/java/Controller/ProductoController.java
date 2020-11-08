@@ -8,11 +8,10 @@ package Controller;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.HashMap;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletException;
@@ -63,43 +62,98 @@ public class ProductoController extends HttpServlet {
                       break;
               }
     }
+    
+      protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+            String action = request.getParameter("action");
+            switch(action){
+                case "changeproducto":
+                    updatePromocion(request,response);
+                    break;
+                case "changedescuento":
+                    updateDescuento(request,response);
+                    break;
+                default:
+                    break;
+            }
+    }
         private void listarPromociones(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-            response.setContentType("application/json");
+           try{
+                response.setContentType("application/json");
             List<Producto> promociones=  productoservice.getPromociones();
            JsonElement element = gson.toJsonTree(promociones,new TypeToken<List<Producto>>(){}.getType());
-            JsonArray jsonArray = element.getAsJsonArray();
-            System.out.println(jsonArray);
+           JsonArray jsonArray = element.getAsJsonArray();
              response.getWriter().print(jsonArray);
+           }catch(Exception ex){
+               System.out.println("promotion list "+ ex);
+           }
         }
         private void listarProductos(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
-            response.setContentType("application/json");
+          try{
+                response.setContentType("application/json");
             List<Producto> productos= productoservice.getProductos(); //get array with object
             JsonElement element = gson.toJsonTree(productos,new TypeToken<List<Producto>>(){}.getType());
             JsonArray jsonArray = element.getAsJsonArray();
-              System.out.println(jsonArray);
             if(jsonArray != null){
-                response.setStatus(200);
                 response.getWriter().print(jsonArray);
+                response.setStatus(200);
             }else{
                 response.getWriter().print("problema en listar productos");
                 response.setStatus(400);
             }
+          }catch(Exception ex){
+              System.out.println(" list products " + ex);
+          }
         }
         private void listarConsultas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-              response.setContentType("application/json");  
+            //consulta en 3 parametros
+            try{
+             response.setContentType("application/json");  
             Map consulta = productoservice.getData();
               String jsonStr = gson.toJson(consulta);
                if(jsonStr != null){
+                   response.getWriter().print(jsonStr);
                 response.setStatus(200);
-                response.getWriter().print(jsonStr);
             }else{
                 response.getWriter().print("problema en consultas");
                 response.setStatus(400);
             }
+            }catch(Exception ex){
+                System.out.println("list querys " +ex);
+            }
+        }
+        private void updatePromocion(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+            try{
+                 String id = request.getParameter("id");
+            double descuento = Double.parseDouble(request.getParameter("descuento"));
+            String codigo = request.getParameter("codigoproducto");
+            SimpleDateFormat _sdf= new SimpleDateFormat("yyyy-MM-dd");
+                String fecha = _sdf.format(new Date());
+           int update =  productoservice.updateProduct(id, fecha, descuento, codigo);
+            if( 0 < update){
+                response.setStatus(200);
+            }
+            }catch(Exception ex){
+                  System.out.println("promotion update " +ex);
+            }
+        }
+        private void updateDescuento(HttpServletRequest request, HttpServletResponse response)  throws ServletException, IOException {
+           try{
+                 response.setStatus(200);
+             String id = request.getParameter("id");
+            double descuento = Double.parseDouble(request.getParameter("descuento"));
+             int update = productoservice.updateDescuento(id, descuento);
+            if( 0 < update){
+                listarPromociones(request,response);
+            }else{
+                response.getWriter().print("problema en consultas");
+                response.setStatus(400);
+            }
+           }catch(Exception ex){
+               System.out.println("descuento update " +ex);
+           }
+                 
         }
         
-     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
      
-     }
 }

@@ -12,7 +12,18 @@ package model;
 public class Usuario {
     private int id;
     private String nombre;
-
+    private String password;
+    private String apellido;
+    private String email;
+    private String cargo;
+    
+    public Usuario(String nombre,String apellido,String password) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.password=password;
+    }
+   
+    
     public String getNombre() {
         return nombre;
     }
@@ -28,21 +39,15 @@ public class Usuario {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    private String apellido;
-    private String email;
-    private String contraseña;
-    private String telefono;
-    private String cargo;
+   public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
-    public Usuario(String nombre,String apellido) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-    }
-   
-    @Override
-    public String toString() {
-        return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email + ", contrase\u00f1a=" + contraseña + ", telefono=" + telefono + ", cargo=" + cargo + '}';
-    }
+    
 
   
   

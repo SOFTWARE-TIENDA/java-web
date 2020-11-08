@@ -5,38 +5,57 @@
  */
 
 $( document ).ready(function() {
+    //initialize modals
      const path = window.location.pathname.split("/")[2];
     showProductos();
      showData();
      showPromociones();
+     let id;
      
-    console.log("here ...");
-         // show modal login 
+    
+      // MODALS ! ..
+        //MODAL LOGIN
       $('#log_in').click(function(event){
           event.preventDefault();
-          console.log("boom");
           $('#modal').show();
       });
+      $('#item-menu').click(function(event){
+    event.preventDefault();
+    $('.menu').toggle();
+  })
       //show modal promotions
        $('#datatable').on('click','.btn_promocion',function(e){
          e.preventDefault();
-             console.log("button");
+             id = $(this).attr("id");
             $('#modal_promotions').show();
+            $('.btn-change').text("Cambiar Producto");
+            
        });
        //  close modal
          $('#icon_close').on('click',function(e){
-             $('#modal_promotions').hide();
              $('#modal').hide();
          });
+         $('#close_modal').click(function(e){
+             $('#modal_promotions').hide();
+         })
            
+     // fin modals
      //login user method post ---
+     $('#changeOferta').click(function(){
+           $('#modal_promotions').show();
+           $('.btn-change').text("Cambiar Descuento");
+     })
+     
+     // --- 
       $('#login').submit(function(e){
          e.preventDefault();
-         console.log("button");
           const param={
             email :$('#email').val(),
             password : $('#password').val()
           };
+          if(param.email == "" || param.password == ""){
+              return errorMessage("complet campos obligatorios");
+          }
             $.ajax({
             data: param,
             type: "POST",
@@ -44,7 +63,6 @@ $( document ).ready(function() {
         }).done(function(data){ //status => 200
                   window.location.href="dashboard.jsp";
         }).fail(function(data){ // status => 400
-             console.log(data.responseText);
              errorMessage(data.responseText);
         });
       });
@@ -55,7 +73,89 @@ $( document ).ready(function() {
                window.location.href="index.jsp";
          });
       });
-      //-- verify path
+      function errorMessage(response){
+         $('#text_error').text(response);
+     }
+      
+         $('.container_promotion_dashboard').on('click','.btn-change',function(e){
+        let param;
+        const promociones=[]
+          const idpromocion = e.target.id
+          const descuento = prompt('Ingrese la oferta del producto');
+            if(e.target.textContent === "Cambiar Producto"){
+                       param={
+                     descuento : descuento,
+                     codigoproducto: id,
+                     id:idpromocion,
+                     action:"changeproducto"
+                };
+             }else{
+                param={
+                    id:idpromocion,
+                    descuento:descuento,
+                    action:"changedescuento"
+                };
+            }
+                $.ajax({
+                  data: param,
+                  type: "POST",
+                  url: "ProductoController"
+              }).done(function(data){ //status => 200
+                           window.location.href="dashboard.jsp";          
+              //$('.container_promotion_dashboard').load(' .container_promotion_dashboard')
+              });
+            
+        });
+        
+      // PAGE PROMOTIONS AND DASHBOARD
+      //show catalogo de productos promociones
+      function showPromociones(){
+         if(path === "promociones.jsp" || "dashboard.jsp"){
+               $.ajax({
+            data: {action:"listarpromocion"},
+            type: "GET",
+            url: "ProductoController"
+            }).done(function(data){ //status => 200
+                showData(data);
+                promociones=data;
+                showPromocionesDashboard(data);
+            })
+         }
+    }
+      
+      //PAGE PROMOCIONES cards promociones
+       //show data 
+     function showData(data){
+        $.each(data,function(key,value){
+            $('.container_promotion').append(`
+             <div class="card">
+         <div class="producto">
+           <div align="center" class="circle">
+           <p class="costo_anterior">s/${value.precioventa}0</p>
+           <div >Oferta</div>
+           <div class="costo_real">s/${value.descuento}.0</div></div>
+         </div>
+        <div class="imagen">
+         <img src="${value.imageUrl}" id="imagen_promocion"> 
+         </div>
+        </div> 
+        `);
+        });
+      }
+      //PAGE DASHBOARD
+      // show query data count,max,min
+      function showQuerys(){
+           $.ajax({
+                data:{action:"listarconsultas"},
+                type:"GET",
+                url:"ProductoController"
+            }).done(function(data){
+                $('#total_producto').text(data.totalproducto);
+                $('#menor_cantidad').text(data.NombreMinimo);
+                 $('#mayor_cantidad').text(data.NombreMayor);
+            });
+      }
+       // QUERY 
       function showProductos(){
                if(path==="dashboard.jsp"){
                  $.ajax({
@@ -65,49 +165,31 @@ $( document ).ready(function() {
             }).done(function(data){
                 showTableData(data);
                 showQuerys();
-            }).fail(function(data){
-                console.log(data);
-                console.log("fail");
             });
          }
       }
-      function showQuerys(){
-           $.ajax({
-                data:{action:"listarconsultas"},
-                type:"GET",
-                url:"ProductoController"
-            }).done(function(data){
-                console.log(data);
-                console.log(data.NombreMinimo);
-                $('#total_producto').text(data.totalproducto);
-                $('#menor_cantidad').text(data.NombreMinimo);
-                 $('#mayor_cantidad').text(data.NombreMayor);
-            }).fail(function(data){
-                console.log(data);
-                console.log("fail");
-            });
+       
+      //show promociones dashboard
+      function showPromocionesDashboard(data){
+           $.each(data,function(key,value){
+            $('.container_promotion_dashboard').append(`
+             <div class="card-dashboard-promotion">
+               <p class="number_text">${key+1}</p>
+           <button type="button" class="btn-change"s id="${key+1}">Cambiar Producto</button>  
+          <img
+           src="${value.imageUrl}" width="150" height="150"
+                />
+          <p style="font-size:20px;">Precio : $./ ${value.precioventa}0</p>
+          <span style="font-size:19px;">Oferta :  $./${value.descuento}.0</span>
+          <p style="font-size:15px;">Fecha Apertura : <span>${value.fecha}</span></p>
+          </div>
+        `)
+        })
       }
-      
-      function showPromociones(){
-          console.log("here promotions");
-         if(path === "promociones.jsp" || "dashboard.jsp"){
-               $.ajax({
-            data: {action:"listarpromocion"},
-            type: "GET",
-            url: "ProductoController"
-            }).done(function(data){ //status => 200
-                showData(data);
-            }).fail(function(data){ // status => 400
-                 console.log(data);
-         });
-         }
-    }
-    
-     function errorMessage(response){
-         $('#error_message').append(`<p style="color:red;">${response}</p>`)
-     }
+        
      
-     function showTableData(data){
+      //  DATA TABLES
+        function showTableData(data){
          $.each(data,function(key,value){
                     $('#data_table').append(`<tr>
                      <td>${key+1}</td>
@@ -120,20 +202,12 @@ $( document ).ready(function() {
                     `);
                 });
                     
-         $("#datatable").DataTable();
+        $("#datatable").DataTable({
+                  "lengthMenu": [ 5, 10, 15, 25, 100 ],
+        });   
      }
-
-    //show data 
-     function showData(data){
-        $.each(data,function(key,value){
-            $('.container_promotion').append(`
-             <div id="card_promotion">
-              <img src="${value.imageUrl}" width="150" height="150"/>
-            </div>
-        `);
-        });
-      }
     
+
     
       
 });

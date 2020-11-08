@@ -5,6 +5,7 @@
  */
 package IDAO;
 
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.List;
 /**
@@ -19,10 +20,17 @@ public interface IProductoDao {
             + "order by cantidad desc limit 1";
     public static final String PRODUCTOS="select * from producto inner join "
             + "imagen_producto on producto.cod_producto=imagen_producto.codproducto";
-    public static final String PROMOCIONES="select cod_producto,nombre,precioventa,imageUrl,imagenid,descuento from producto"
+    public static final String PROMOCIONES="select cod_producto,nombre,precioventa,imageUrl,imagenid,oferta,fecha_apertura from producto"
             + " inner join imagen_producto on producto.cod_producto=imagen_producto.codproducto "
             + "inner join promociones on producto.cod_producto=promociones.codproducto;";
-    public Map getTotalProducto();
-    public List getListProducto();
-     public List getListPromociones();
+    public static final String PRODUCTOSUPDATE= "update promociones set fecha_apertura=?,oferta=?,codproducto=? "
+            + "where idpromociones=?";
+    public static final String PROMOCIONDESCUENTO="update promociones set oferta=? where idpromociones=?";
+    
+    public Map getTotalProducto() throws SQLException;
+    public List getListProducto() throws SQLException;
+     public List getListPromociones() throws SQLException;
+     
+    public int updatePromocion(String id,String fecha,Double descuento,String codigo) throws SQLException;
+    public int updateDescuento(String id ,double descuento) throws SQLException;
 }

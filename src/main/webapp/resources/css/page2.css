@@ -9,21 +9,77 @@ and open the template in the editor.
 */
 /* css de pagina promociones */
 
+/* PROMOCIONES CARDS */
 .container_promotion{
+   display:flex;
+  flex-direction:row;
+  flex-flow:wrap;
+  width:60%;
+  margin:auto;
+}
+.card{
+  margin:40px auto;
+  height:330px; 
+  width:270px;
+ border-radius: 10px 10px 10px 10px;
+-moz-border-radius: 10px 10px 10px 10px;
+-webkit-border-radius: 10px 10px 10px 10px;
+border: 3px solid #000000;
+border-color:#14D11c;
+}
+
+.container1,.container2{
   display:flex;
- flex-wrap:wrap;
-  background:yellow;
-  position:absolute;
-  top:50%;
-  left:50%;
-   transform: translate(-50%,-50%);
+  flex-direction:row;
+  flex-flow:wrap;
 }
-#promotions{
-  justify-content:space-between;
-  
+
+.producto{
+   margin-top:20px;
+  padding-left:160px;
+  line-height:23px;
+  margin-right:10px;
+  font-family:'OpenSans-Light'
 }
-#card_promotion{
-  background:orange;
-  height:150px;
-  padding:5px;
+.circle {
+   width: 80px;
+   height: 80px;
+   background: rgba(30, 226, 62, 0.72);
+   border-radius: 50%;
+   padding:3px;
+}
+.checkbtn{
+  font-size:15px;
+  margin-left:10px;
+  line-height:30px;
+  color:#1B87B6;
+  cursor:pointer;
+}
+.costo_anterior{
+    text-decoration:line-through;
+    font-weight:bold;
+    margin-top:6px;
+}
+.costo_real{
+    color:white;
+}
+
+#imagen_promocion{
+    width:180px;
+    height:180px;
+    border-radius:20px;
+}
+.imagen{
+    margin-top:15px;
+    text-align: center;
+}
+@media screen and (max-width:1000px){
+  .card{
+    widht:40%;
+  }
+}
+@font-face{
+    font-family: 'OpenSans-Light';
+    src: url("../fonts/OpenSans-Light.ttf");
+    font-style: normal;
 }

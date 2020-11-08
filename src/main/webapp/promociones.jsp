@@ -13,27 +13,19 @@
     </head>
     <body>
           <jsp:include page="Menu/navbar.jsp"></jsp:include>
-          <div class="page-promociones">
-              <div>
-
-                Bienvenido Jose
-            </div>
-            <div>
-              <div class="card">
-                 <h1>Card #1</h1>
-             </div>
-             <div class="card">
-                 <h1>Card #2</h1>
-             </div>
-            </div>
-            <h1>promociones here ...</h1>
             <!-- -->
+            <div class="text-title">
+                <span class="chip-text">Promociones</span>
+                  <div class="chip-line">
+                  <hr class="line"> 
+                    <i class="fas fa-circle" id="circle-chip"></i>
+                </div>
+              </div>
              <div class="container_promotion">
                     <div id="promotions">
                     </div>
                 </div>
              <!-- -->
-          </div>
           <jsp:include page="Menu/footer.jsp"></jsp:include>
     </body>
 </html>

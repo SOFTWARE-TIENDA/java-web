@@ -5,29 +5,38 @@
  */
 package service;
 
+import app.DatabaseConfig.Conexion;
+import app.DatabaseConfig.GestorJDBC;
+import app.DatabaseConfig.GestorJDBCPostgre;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import dao.UserDao;
 import model.Usuario;
-
 /**
  *
  * @author josel
  */
 public class UsuarioService{
-    
-    private UserDao userdao= new UserDao();
-    public Usuario authenticatedUser(String email,String password){
-        try{
-            System.out.println("service here ..");
-        if(email.equals("") || password.equals("")){
-                return null;
-        }else{
-             Usuario usuario  = userdao.authenticated(email, password);
+    UserDao userDAO;
+    Conexion conexao = new Conexion();
+    GestorJDBC gestor;
+    public UsuarioService(){
+        gestor = new GestorJDBCPostgre();
+        userDAO = new UserDao(gestor);
+    }
+    public String EncryptionPassword(String password){
+          String bcryptHashString = BCrypt.withDefaults().hashToString(12, password.toCharArray());
+         return bcryptHashString;
+     }
+     public boolean desencriptionPassword(String password,String hashingpassword){
+         BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), hashingpassword);
+        return result.verified;
+     }
+        
+    public Usuario authenticatedUser(String email,String password) throws Exception{
+            gestor.abrirConexion();
+             Usuario usuario  = userDAO.authenticated(email);
+             gestor.cerrarConexion();
              return usuario;
-        }
-        }catch(Exception ex){
-            System.out.println("error "+ ex);
-        }
-        return null;
     }
     
     

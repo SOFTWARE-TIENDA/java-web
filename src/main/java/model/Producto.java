@@ -17,6 +17,7 @@ public class Producto {
     private String imagenid;
     private String imageUrl;
     private double descuento;
+    private String fecha;
 
     
     @Override
@@ -24,7 +25,7 @@ public class Producto {
         return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precioventa=" + precioventa + ", imagenid=" + imagenid + ", imageUrl=" + imageUrl + '}';
     }
 
-    public Producto(String codigo, String nombre, int cantidad, double precioventa, String imagenid, String imageUrl,double descuento) {
+    public Producto(String codigo, String nombre, int cantidad, double precioventa, String imagenid, String imageUrl,double descuento,String fecha) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -32,6 +33,7 @@ public class Producto {
         this.imagenid = imagenid;
         this.imageUrl = imageUrl;
         this.descuento=descuento;
+        this.fecha=fecha;
     }
 //    public Producto(String codigo, String nombre,double precioventa, String imagenid, String imageUrl,double descuento) {
 //        this.codigo = codigo;
