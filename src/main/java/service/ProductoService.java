@@ -5,9 +5,7 @@
  */
 package service;
 
-import app.DatabaseConfig.Conexion;
 import app.DatabaseConfig.GestorJDBC;
-import app.DatabaseConfig.GestorJDBCMysql;
 import app.DatabaseConfig.GestorJDBCPostgre;
 import dao.ProductoDao;
 import java.util.HashMap;
@@ -64,7 +62,7 @@ public class ProductoService {
     public int updateDescuento(String id,double descuento) throws Exception{
          gestor.abrirConexion();
         try{
-             gestor.iniciarTransaccion();
+        gestor.iniciarTransaccion();
         int updateProduct = productodao.updateDescuento(id,descuento);
         gestor.terminarTransaccion();
         return updateProduct;

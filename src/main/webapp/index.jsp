@@ -12,7 +12,9 @@
         <title>Home Page</title>
     </head>
     <body>
+       
         <jsp:include page="Menu/navbar.jsp"></jsp:include>
+         <img src="resources/images/imagen_background.png" class="imagen_background_initial" alt=""/>
             <div class="container">
                  <!-- card about-->
                 <div class="text-title">
