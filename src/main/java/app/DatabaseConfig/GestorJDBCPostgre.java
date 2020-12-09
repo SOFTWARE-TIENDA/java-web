@@ -15,16 +15,16 @@ public class GestorJDBCPostgre extends GestorJDBC{
      @Override
      public void abrirConexion() throws Exception {
         try {
-            String host="ec2-3-208-50-226.compute-1.amazonaws.com";
-            String user="puhpdvsrudzyxt";
-            String password="3c490415e62f6f9239844a9e45d070ea27da3d9669f04e37426bcc4a6b379c07";
+            String host="isilo.db.elephantsql.com";
+            String user="vmycjgoi";
+            String password="CpQTLo7xIdUl6ECoKxcxPKZU6_Gb4dNV";
             String port="5432";
-            String database="ddl6bjifq5a25k";
+            String database="vmycjgoi";
             String url = "jdbc:postgresql://"+host+":"+port+"/"+database+"?sslmode=require&&?targetServerType=primary";
              Class.forName("org.postgresql.Driver");
             conexion = DriverManager.getConnection(url,user,password);
         } catch (Exception e) {
-            throw new Exception("Error en la conexion con la base de datos de MYSQL, consulte con el administrador." + e);
+            throw new Exception("Error en la conexion con la base de datos de POSTGRE, consulte con el administrador." + e);
         }
 
     }
