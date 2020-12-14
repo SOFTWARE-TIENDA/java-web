@@ -133,7 +133,7 @@ $( document ).ready(function() {
            <div align="center" class="circle">
            <p class="costo_anterior">s/${value.precioventa}0</p>
            <div >Oferta</div>
-           <div class="costo_real">s/${value.descuento}.0</div></div>
+           <div class="costo_real">s/${value.descuento}</div></div>
          </div>
         <div class="imagen">
          <img src="${value.imageUrl}" id="imagen_promocion"> 

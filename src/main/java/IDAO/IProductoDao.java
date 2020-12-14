@@ -20,12 +20,12 @@ public interface IProductoDao {
             + "order by cantidad desc limit 1";
     public static final String PRODUCTOS="select * from producto inner join "
             + "imagen_producto on producto.cod_producto=imagen_producto.codproducto";
-    public static final String PROMOCIONES="select cod_producto,nombre,precioventa,imageUrl,imagenid,oferta,fecha_apertura from producto"
+    public static final String PROMOCIONES="select cod_producto,nombre,precioventa,imageUrl,imagenid,descuento,fecha_apertura from producto"
             + " inner join imagen_producto on producto.cod_producto=imagen_producto.codproducto "
             + "inner join promociones on producto.cod_producto=promociones.codproducto;";
-    public static final String PRODUCTOSUPDATE= "update promociones set fecha_apertura=?,oferta=?,codproducto=? "
+    public static final String PRODUCTOSUPDATE= "update promociones set fecha_apertura=?,descuento=?,codproducto=? "
             + "where idpromociones=?";
-    public static final String PROMOCIONDESCUENTO="update promociones set oferta=? where idpromociones=?";
+    public static final String PROMOCIONDESCUENTO="update promociones set descuento=? where idpromociones=?";
     
     public Map getTotalProducto() throws SQLException;
     public List getListProducto() throws SQLException;

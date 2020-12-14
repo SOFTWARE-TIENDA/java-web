@@ -24,7 +24,7 @@ public class GestorJDBCMysql extends GestorJDBC{
              Class.forName("com.mysql.jdbc.Driver");
              conexion = DriverManager.getConnection(url,user,password);
         } catch (Exception e) {
-            throw new Exception("Error en la conexion con la base de datos de Postgre, consulte con el administrador." + e);
+            throw new Exception("Error en la conexion con la base de datos de Mysql, consulte con el administrador." + e);
         }
 
     }

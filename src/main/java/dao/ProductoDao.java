@@ -75,7 +75,7 @@ public class ProductoDao implements IProductoDao{
                        re5.getDouble("precioventa"),
                        re5.getString("imagenid"),
                        re5.getString("imageUrl"),
-                       re5.getDouble("oferta"),
+                       re5.getDouble("descuento"),
                        re5.getString("fecha_apertura")
                );
                      list.add(pro);
